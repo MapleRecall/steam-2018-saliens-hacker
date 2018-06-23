@@ -1,8 +1,9 @@
 // ==UserScript==
 // @name            Steam 2018 summer game hacker
-// @version         0.1
-// @author           MapleRecall
-// @downloadURL     https://coding.net/u/maplerecall/p/steam-2018-summer-game-hack/git/raw/master/index.js
+//
+// @author          MapleRecall
+// @namespace       https://github.com/MapleRecall
+// @downloadURL     https://raw.githubusercontent.com/MapleRecall/steam-2018-saliens-hacker/master/index.js
 //
 // @license         MIT License
 // @copyright       Copyright (C) 2018, by MapleRecall 
@@ -13,7 +14,7 @@
 // @include         https://steamcommunity.com/saliengame/play/
 //
 // @version         1.0.0
-// @updateURL		https://coding.net/u/maplerecall/p/steam-2018-summer-game-hack/git/raw/master/index.js
+// @updateURL		https://raw.githubusercontent.com/MapleRecall/steam-2018-saliens-hacker/master/index.js
 //
 // @run-at			document-start|document-end
 // @grant        none
