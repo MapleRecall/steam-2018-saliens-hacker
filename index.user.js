@@ -13,7 +13,7 @@
 // @include         https://steamcommunity.com/saliengame/play
 // @include         https://steamcommunity.com/saliengame/play/
 //
-// @version         1.0.0
+// @version         1.1.0
 // @updateURL       https://raw.githubusercontent.com/MapleRecall/steam-2018-saliens-hacker/master/index.js
 //
 // @run-at          document-start|document-end
@@ -29,6 +29,17 @@
     let score
     let currentGame
     let running = false
+    let $output = $('#dogeOutput')
+    if ($output.length === 0) {
+        let $dogeBody=$('<div>').css({
+                boxSizing: 'border-box', position: 'fixed', bottom: 0, left: '20px', right: '20px', zIndex: 999999,
+                padding: '10px', borderRadius:'5px 5px 0 0', background: '#171a21', color: '#b8b6b4',
+                boxShadow: '0 0 20px #000'
+            }).appendTo($('body'))
+        $output = $('<div id="dogeOutput">').css({height:'200px',overflow:'auto',margin:'0 0 10px'}).appendTo($dogeBody)
+        $(`<div class="global_header_toggle_button">`).text('　START　').click(()=>{window.superDoge.start()}).appendTo($dogeBody)
+        $(`<div class="global_header_toggle_button">`).text('　STOP　').click(()=>{window.superDoge.stop()}).appendTo($dogeBody)
+    }
 
     async function joinGame() {
         clearTimeout(gameTimer)
@@ -68,11 +79,11 @@
             const { zone_position, difficulty, capture_progress: progress } = targetZone
             score = difficulty === 1 ? 595 : difficulty === 2 ? 1190 : 2380
             log(`Joining zone...`)
-            var { response } = await $.post(`${gameUrlPrefix}/JoinZone/v0001/`, `zone_position=${zone_position}&access_token=${token}`)
-            if (response.zone_info) {
+            var { response:{zone_info} } = await $.post(`${gameUrlPrefix}/JoinZone/v0001/`, `zone_position=${zone_position}&access_token=${token}`)
+            if (zone_info) {
                 log(`Join zone ${zone_position}(${zone_position % 12 + 1 | 0},${zone_position / 12 + 1 | 0}) success.`)
                 log(`Progress: ${(progress * 100).toFixed(2)}%, wait 110s to send score ${score}...`)
-                currentGame = response.gameid
+                currentGame = zone_info.gameid
                 gameTimer = setTimeout(sendScore, 110000)
             } else {
                 throw 'Service reject.'
@@ -152,7 +163,10 @@
         const date = new Date()
         const time = `[${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}]\t`
         console.log(time, ...arguments)
+        $output.append($('<div>').text(`${time}\t ${arguments[0]}`))
+        requestAnimationFrame(() => { $output[0].scrollTop = 10e10 })
     }
+
     window.superDoge && window.superDoge.stop()
     window.superDoge = { start, stop }
     start()
