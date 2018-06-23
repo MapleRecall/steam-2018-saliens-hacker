@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name            Steam 2018 summer game hacker
-//
+// @description     _(:3」∠)_
 // @author          MapleRecall
 // @namespace       https://github.com/MapleRecall
 // @downloadURL     https://raw.githubusercontent.com/MapleRecall/steam-2018-saliens-hacker/master/index.js
@@ -14,10 +14,10 @@
 // @include         https://steamcommunity.com/saliengame/play/
 //
 // @version         1.0.0
-// @updateURL		https://raw.githubusercontent.com/MapleRecall/steam-2018-saliens-hacker/master/index.js
+// @updateURL       https://raw.githubusercontent.com/MapleRecall/steam-2018-saliens-hacker/master/index.js
 //
-// @run-at			document-start|document-end
-// @grant        none
+// @run-at          document-start|document-end
+// @grant           none
 // ==/UserScript==
 
 (async function ($, forSTCN) {
